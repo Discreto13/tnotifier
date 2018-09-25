@@ -16,7 +16,7 @@ while [[ $1 != '' ]]; do
 		-u | --target-user )	shift
 					USER_ID=$1;
 					;;
-		-s | --sender-name )	SENDER_NAME=$USER
+		-s | --sender-name )	SENDER_NAME=$(hostname)
 					;;
 		* )			echo "Unknown argument: $1"
 					exit 1
