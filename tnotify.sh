@@ -3,7 +3,7 @@
 # Telegram notify bot
 # Send simple message to user by telegram
 
-source ./tnotifier.cfg
+source ~/tnotifier.cfg
 
 # Parse arguments
 while [[ $1 != '' ]]; do
