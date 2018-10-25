@@ -3,7 +3,7 @@
 # Telegram notify bot
 # Send simple message to user by telegram
 
-source ~/tnotifier.cfg
+source ~/.config/tnotifier/config
 
 DISABLE_NOTIFICATION=false
 
