@@ -5,6 +5,8 @@
 
 source ~/tnotifier.cfg
 
+DISABLE_NOTIFICATION=false
+
 # Parse arguments
 while [[ $1 != '' ]]; do
 	case $1 in
@@ -14,7 +16,11 @@ while [[ $1 != '' ]]; do
 		-u | --target-user )	shift
 					USER_ID=$1;
 					;;
-		-s | --sender-name )	SENDER_NAME=$(hostname)
+		-s | --sender-name )
+					SENDER_NAME=$(hostname)
+					;;
+		-d | --disable-notification )
+					DISABLE_NOTIFICATION=true
 					;;
 		* )			echo "Unknown argument: $1"
 					exit 1
@@ -29,7 +35,7 @@ fi
 
 # Sendind
 echo "Sending \"$MESSAGE\" to user-$USER_ID...";
-POST_ARGS="{\"chat_id\":\"${USER_ID}\", \"text\":\"${MESSAGE}\"}"
+POST_ARGS="{\"chat_id\":\"${USER_ID}\", \"text\":\"${MESSAGE}\", \"disable_notification\": $DISABLE_NOTIFICATION}"
 TR_URL="https://api.telegram.org/bot${BOT_TOKEN}/sendMessage";
 if ( curl -s -X POST -H "Content-Type: application/json" -d "$POST_ARGS" "$TR_URL" | grep -q "\"ok\":true" ); then
 	echo "Successful!";
