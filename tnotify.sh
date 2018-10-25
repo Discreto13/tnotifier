@@ -29,9 +29,11 @@ fi
 
 # Sendind
 echo "Sending \"$MESSAGE\" to user-$USER_ID...";
-TR_URL="https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${USER_ID}&text=${MESSAGE}";
-if ( curl -s "$TR_URL" | grep -q "\"ok\":true" ); then
+POST_ARGS="{\"chat_id\":\"${USER_ID}\", \"text\":\"${MESSAGE}\"}"
+TR_URL="https://api.telegram.org/bot${BOT_TOKEN}/sendMessage";
+if ( curl -s -X POST -H "Content-Type: application/json" -d "$POST_ARGS" "$TR_URL" | grep -q "\"ok\":true" ); then
 	echo "Successful!";
 else
 	echo "Something went wrong =(";
 fi
+
