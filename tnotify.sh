@@ -3,9 +3,7 @@
 # Telegram notify bot
 # Send simple message to user by telegram
 
-BOT_TOKEN="550153967:AAH6ov8B_rFPcUJpwpEhbmmcBs-QGUHBYq0"
-USER_ID=315716801 		# use @userinfobot to know
-MESSAGE="Notify message"	# init with default value
+source ./tnotifier.cfg
 
 # Parse arguments
 while [[ $1 != '' ]]; do
