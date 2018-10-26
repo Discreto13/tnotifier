@@ -34,7 +34,7 @@ if [[ $SENDER_NAME ]]; then
 fi
 
 # Sendind
-echo "Sending \"$MESSAGE\" to user-$USER_ID...";
+printf "Sending \"$MESSAGE\" to user-$USER_ID... ";
 POST_ARGS="{\"chat_id\":\"${USER_ID}\", \"text\":\"${MESSAGE}\", \"disable_notification\": $DISABLE_NOTIFICATION}"
 TR_URL="https://api.telegram.org/bot${BOT_TOKEN}/sendMessage";
 if ( curl -s -X POST -H "Content-Type: application/json" -d "$POST_ARGS" "$TR_URL" | grep -q "\"ok\":true" ); then
